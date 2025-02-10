@@ -147,9 +147,12 @@ export default function Sidebar({
       <div className="flex-1 overflow-hidden flex flex-col">
         {/* Feed List */}
         <div className="p-2 border-b border-gray-200 overflow-y-auto">
-          <button
+          <div
+            role="button"
+            tabIndex={0}
             onClick={() => onFeedSelect('all')}
-            className={`w-full px-4 py-3 rounded-lg text-left transition-colors mb-2 group
+            onKeyDown={(e) => e.key === 'Enter' && onFeedSelect('all')}
+            className={`w-full px-4 py-3 rounded-lg text-left transition-colors mb-2 group cursor-pointer
               ${selectedFeedId === 'all'
                 ? 'bg-blue-50 text-blue-700 font-medium'
                 : 'text-gray-700 hover:bg-gray-50'
@@ -163,12 +166,15 @@ export default function Sidebar({
               </svg>
               <span className="text-sm">All Feeds</span>
             </div>
-          </button>
+          </div>
           {feeds.map((feed) => (
-            <button
+            <div
               key={feed.id}
+              role="button"
+              tabIndex={0}
               onClick={() => onFeedSelect(feed)}
-              className={`w-full px-4 py-3 rounded-lg text-left transition-colors mb-2 group
+              onKeyDown={(e) => e.key === 'Enter' && onFeedSelect(feed)}
+              className={`w-full px-4 py-3 rounded-lg text-left transition-colors mb-2 group cursor-pointer
                 ${selectedFeedId === feed.id
                   ? 'bg-blue-50 text-blue-700 font-medium'
                   : 'text-gray-700 hover:bg-gray-50'
@@ -187,6 +193,7 @@ export default function Sidebar({
                   onClick={(e) => handleDeleteFeed(e, feed.id)}
                   className="p-1 ml-2 text-gray-400 hover:text-red-500 rounded-full hover:bg-red-50 transition-colors"
                   title="Delete feed"
+                  aria-label={`Delete ${feed.name}`}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
@@ -194,7 +201,7 @@ export default function Sidebar({
                   </svg>
                 </button>
               </div>
-            </button>
+            </div>
           ))}
         </div>
 
