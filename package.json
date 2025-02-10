@@ -11,7 +11,7 @@
   "dependencies": {
     "@ai-sdk/react": "^0.0.52",
     "@heroicons/react": "^2.1.1",
-    "ai": "^2.2.35",
+    "ai": "2.2.35",
     "axios": "^1.6.7",
     "framer-motion": "^11.0.3",
     "next": "14.1.0",
